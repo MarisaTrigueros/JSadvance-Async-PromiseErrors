@@ -1,4 +1,4 @@
-const isLogged = true;
+const isLogged = false;
 
 let promise = new Promise ((resolve, reject) => {
     let log = isLogged;
@@ -12,11 +12,11 @@ let promise = new Promise ((resolve, reject) => {
 });
 
 let promise2 = (number) => {
-    return new Promise ((resolve, reject) => {
+    return new Promise ((resolve) => {
     if (number > 0.5){
         resolve({name: 'John', age: 24});
     } else {
-        reject('Error tipo: Número menor de 0.5');
+        throw new Error ('Error tipo: Número menor de 0.5');
     }
 });
 
@@ -26,11 +26,10 @@ promise
     .then((mathRandom) => {
         return promise2(mathRandom);
     })
-    .then((val) => {
-        console.log(val);
+    .then((value) => {
+        console.log(value);
     })
-    .catch((err) => {
-        console.error(err)
+    .catch((Error) => {
+        console.error(Error)
     })
     .finally(() => console.log("Arepa"))
-
